@@ -73,7 +73,7 @@ class HangpersonGame
   #Method to check game state. Returns a symbol for :wins, :lose, or keep playing (:play)
   def check_win_or_lose
     if win_counter >= word.split("").uniq.length then return :win end
-    @turn_counter >= 7 ? :lose : :play
+    @turn_counter > 8 ? :lose : :play
   end
   
 end

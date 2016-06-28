@@ -42,9 +42,16 @@ class HangpersonApp < Sinatra::Base
     ### YOUR CODE HERE ###
     if  @game.wrong_guesses.include?(letter) || @game.guesses.include?(letter)
       flash[:message] = "You have already used that letter"
-      @game.word_with_guesses
     else
     @game.guess(letter)
+    check = @game.check_win_or_lose
+      if check != :play
+        if check == :win
+        redirect '/win'
+      else
+        redirect '/lose'
+        end
+      end
     end
     redirect '/show'
   end
