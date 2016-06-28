@@ -38,7 +38,9 @@ class HangpersonGame
   def guess(letter)
     raise(ArgumentError, "You must enter a letter") if (letter =~ /[^a-z]/i) 
      raise(ArgumentError, "You must enter a letter") if !letter || letter.empty?  #for some reason letter.blank? doesn't work. 
-     raise(ArgumentError, "Enter only one letter") if (letter.length > 1)
+     #I'll need to update this to handle multiple letter inputs. Though this line might not be needed since App.rb only passes
+     #A single letter at a time. 
+     #raise(ArgumentError, "Enter only one letter") if (letter.length > 1) 
     @turn_counter +=1
     letter.downcase!
    
