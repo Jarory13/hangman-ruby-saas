@@ -18,7 +18,7 @@ class HangpersonGame
     @word = new_word.downcase
     @guesses = ''
     @wrong_guesses = ''
-    @turn_counter = 0
+    @lose_counter = 0
     @display = ''
     @win_counter = 0
   end
@@ -41,7 +41,6 @@ class HangpersonGame
      #I'll need to update this to handle multiple letter inputs. Though this line might not be needed since App.rb only passes
      #A single letter at a time. 
      #raise(ArgumentError, "Enter only one letter") if (letter.length > 1) 
-    @turn_counter +=1
     letter.downcase!
    
         if (guesses.include? letter) | (wrong_guesses.include? letter) 
@@ -52,6 +51,7 @@ class HangpersonGame
               @win_counter +=1
             else 
               @wrong_guesses += letter
+               @lose_counter +=1
             end
         end
   end
@@ -73,7 +73,7 @@ class HangpersonGame
   #Method to check game state. Returns a symbol for :wins, :lose, or keep playing (:play)
   def check_win_or_lose
     if win_counter >= word.split("").uniq.length then return :win end
-    @turn_counter > 8 ? :lose : :play
+    @lose_counter >= 7 ? :lose : :play
   end
   
 end
